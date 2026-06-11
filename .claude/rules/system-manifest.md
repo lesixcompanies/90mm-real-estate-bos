@@ -28,6 +28,7 @@
 | File | Contains |
 |------|----------|
 | .claude/agents/README.md | Documentation on creating sub-agents, model routing, MCP connections |
+| .claude/agents/critic.md | Framework agent. Clean-context adversarial reviewer (read-only, Opus). Roasts a plan/offer/project/decision through the user's own constraint + soul.md via the TOC lens. Fires on explicit critique intent only ("roast this," "pressure-test this"), never proactively. Invocable by name. |
 
 ## Context — About the Person and Business
 <!-- Populated during diagnostic. Update entries as files are created. -->

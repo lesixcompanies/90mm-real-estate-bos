@@ -108,13 +108,15 @@ One master deployment prompt works for all audiences. The diagnostic determines 
 
 ## Sub-Agents and External Tools
 
-The system supports sub-agents that run on different models (Haiku for cheap research, Sonnet for balanced work, Opus for complex reasoning) and external tool connections via MCP servers (Perplexity for web research, Google Workspace, CRM systems, etc.).
+The system ships with one agent built in — **the critic**: a clean-context adversarial reviewer that roasts a plan, offer, or decision through your own constraint, with no incentive to agree. Ask it to "roast my plan" or "pressure-test this." It's read-only and runs on Opus.
 
-See `.claude/agents/README.md` for full documentation on creating sub-agents, connecting external services, and model routing strategies.
+You can also add your own sub-agents that run on different models (Haiku for cheap research, Sonnet for balanced work, Opus for complex reasoning) and connect external tools via MCP servers (Perplexity for web research, Google Workspace, CRM systems, etc.).
+
+See `.claude/agents/README.md` for full documentation on the critic, creating your own sub-agents, connecting external services, and model routing strategies.
 
 ## Updating the Framework
 
-The framework (thinking process skills, rules, templates, agents documentation) will be updated over time. Your personal data (context files, pipeline, processes, diagnostics, decisions) is never touched by updates. See `FRAMEWORK_FILES.md` for the complete list of which files are which.
+The framework (thinking process skills, rules, templates, the critic agent, and agents documentation) will be updated over time. Your personal data (context files, pipeline, processes, diagnostics, decisions) and any sub-agents you create yourself are never touched by updates. See `FRAMEWORK_FILES.md` for the complete list of which files are which.
 
 ### First Time Setup (One Time Only)
 
@@ -135,7 +137,7 @@ Pull only the framework files — this **never touches** your context, pipeline,
 
 ```
 git fetch upstream
-git checkout upstream/main -- .claude/skills/ .claude/rules/diagnostic-methodology.md .claude/rules/change-sequence.md .claude/rules/system-manifest.md .claude/agents/README.md .claude/settings.json templates/session-summary.md references/industry-crt.md README.md LICENSE FRAMEWORK_VERSION FRAMEWORK_FILES.md .gitignore
+git checkout upstream/main -- .claude/skills/ .claude/rules/diagnostic-methodology.md .claude/rules/change-sequence.md .claude/rules/system-manifest.md .claude/agents/ .claude/settings.json templates/session-summary.md references/industry-crt.md README.md LICENSE FRAMEWORK_VERSION FRAMEWORK_FILES.md .gitignore
 git add -A
 git commit -m "Updated framework to v[NEW VERSION]"
 ```
@@ -171,6 +173,7 @@ Execution skills are built organically as the S&T Tree identifies what's needed,
 
 ## Version History
 
+- **v2.1** — First framework sub-agent: **the critic**, a clean-context adversarial reviewer (read-only, Opus) that pressure-tests plans through the user's own constraint. Established the framework-agent update contract: framework agents update with the framework; user-created agents are never overwritten. Updated the framework update commands to pull the whole `.claude/agents/` folder. Added a Framework Agents section to the CLAUDE.md template.
 - **v2.0** — Single master deployment prompt replaces five audience-specific prompts. Two-phase diagnostic: soul builder (Phase A) + business diagnostic (Phase B). Added soul.md personality layer. Added system-manifest.md for token-efficient file routing. Added decision logging rubric with automatic triggers. Updated CLAUDE.md template.
 - **v1.2** — Added industry-level Current Reality Tree as reference document. All deployment prompts updated with real URLs, measurement baseline capture, voice pathway (Wispr Flow), and CRT reference instructions.
 - **v1.1** — Added sub-agents directory with documentation and examples. Added framework update mechanism (FRAMEWORK_VERSION, FRAMEWORK_FILES.md, upstream pull instructions).
