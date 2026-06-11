@@ -123,11 +123,15 @@ user will refine. Speed matters more than perfection at this stage.
 
 ## Best Practices
 
-- **3-5 sub-agents maximum.** More than that and the system spends more time deciding which agent to use than actually working.
-- **Start with one: a Haiku researcher with Perplexity.** That single agent handles the most common need — getting current information into the system without burning expensive tokens.
-- **Match model to task, not to importance.** Haiku summarizing Perplexity research results produces output that's 90% as good as Opus at a fraction of the cost. Reserve Opus for complex reasoning, not information retrieval.
-- **Sub-agents cannot spawn sub-agents.** This is a Claude Code limitation. Design your agents as single-task workers, not orchestrators.
-- **Write clear descriptions.** Claude decides when to delegate based on the description field. Vague descriptions mean the agent never gets used or gets used for the wrong things.
+- **Keep the auto-routed roster small (≈3-5 custom agents).** This is about how many *description-triggered* custom agents live in this folder — past a handful, Claude spends more time deciding which to use than working. It does NOT cap how many workers a *skill* can spawn in one run: a skill can deliberately fan out to many workers because it names exactly which one runs at each step (no routing ambiguity).
+- **Match model to task, not to importance.** Haiku summarizing Perplexity research results produces output that's 90% as good as Opus at a fraction of the cost. Reserve Opus for complex reasoning (diagnostics, adversarial critique), not information retrieval.
+- **Restrict tools at the permission layer, not in the prompt.** A `tools:` allowlist is enforced — the agent physically cannot call what isn't listed. "I told it to be read-only" in prose is not the same thing; assume an agent will touch any data it *can*. See `critic.md` for a read-only agent (`tools: Read, Grep, Glob`) — it cannot write, edit, or run commands even if asked.
+- **A sub-agent can't itself spawn more sub-agents** — design each one as a single-task worker, not an orchestrator. (Orchestration is the job of the main session or a skill, which can call many workers in sequence or parallel.)
+- **Write clear descriptions.** Claude decides when to delegate based on the description field. Vague descriptions mean the agent never gets used or gets used for the wrong things. Be explicit about *when NOT* to fire, too — `critic.md` says "explicit critique intent only, never proactively" to prevent misfires.
+
+## Agents That Ship With the Framework
+
+- **`critic.md`** — a clean-context adversarial reviewer on Opus, read-only by frontmatter. Invoke by name or by asking to "roast / pressure-test / poke holes in" a plan, offer, or project. It reads *your* constraint and *your* `soul.md`, then attacks the plan through the Theory of Constraints lens. This is a framework agent — it updates when you update the framework. It's also the canonical pattern for a tool-restricted, description-triggered subagent; copy its shape when you build your own.
 
 ## Integration with the Business Operating System
 

@@ -62,6 +62,10 @@ This system follows the TOC change sequence. Always know where you are in the se
 ## Additional Skills
 Execution skills live in .claude/skills/ and are built during the Execute phase as needed, driven by the S&T Tree.
 
+## Framework Agents
+- .claude/agents/critic.md — Clean-context adversarial reviewer (read-only, Opus). Invoke by name or by asking to "roast / pressure-test / poke holes in" a plan, offer, project, or decision. Reads this user's constraint and soul.md, then attacks the plan through the TOC lens. Fires on explicit critique intent only — never proactively. Use it before committing to a direction, not as a substitute for the change sequence.
+- Any sub-agents YOU create also live in .claude/agents/. See .claude/agents/README.md.
+
 ## Skills Backlog
 <!-- Populated after diagnostic and change sequence -->
 [Deployment prompt fills this based on diagnostic findings]

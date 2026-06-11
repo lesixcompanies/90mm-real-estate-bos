@@ -16,6 +16,7 @@ These files contain the methodology, thinking processes, rules, and infrastructu
 .claude/rules/change-sequence.md
 .claude/rules/system-manifest.md
 .claude/agents/README.md
+.claude/agents/critic.md
 .claude/settings.json
 templates/session-summary.md
 README.md
@@ -54,8 +55,13 @@ templates/monthly-review.md        (created by deployment prompt)
                                     the framework skills — updates won't touch
                                     skill folders that aren't in the framework
                                     files list above)
-.claude/agents/*                   (any sub-agents YOU create live here —
-                                    updates only touch README.md)
+.claude/agents/*                   (framework agents listed above — README.md
+                                    and critic.md — ARE updated. Any sub-agent
+                                    YOU create here with a different filename is
+                                    yours and is never overwritten. Updates pull
+                                    the whole agents/ folder, but git only
+                                    replaces files that exist in the framework,
+                                    so your own agents are safe.)
 ```
 
 ## How Updates Work
