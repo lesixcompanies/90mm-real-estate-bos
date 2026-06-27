@@ -50,6 +50,7 @@ Re-run when the constraint shifts or quarterly, whichever comes first.
 @.claude/rules/change-sequence.md
 @.claude/rules/system-manifest.md
 @.claude/rules/soul.md
+@.claude/rules/plan-format.md
 This system follows the TOC change sequence. Always know where you are in the sequence. Never skip steps. Never advance past a resistance layer gate without resolution. Read the system manifest first to identify relevant files — do not load everything into context.
 
 ## Thinking Process Skills

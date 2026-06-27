@@ -13,7 +13,7 @@ This repository contains the **methodology layer** — the thinking process skil
 
 ## Who This Is For
 
-This framework serves four audiences in the real estate industry. Each uses a dedicated deployment prompt that creates the appropriate context and pipeline structure:
+This framework serves four audiences in the real estate industry. A single master deployment prompt adapts to all of them — the diagnostic determines which you are and builds the appropriate context and pipeline structure:
 
 - **Agents** — Identify what's limiting your practice. Build repeatable processes. Stop winging it.
 - **Brokers** — Build systems for agent recruitment, retention, and development beyond transaction oversight.
@@ -46,7 +46,7 @@ Each skill includes trigger conditions, process steps, resistance layer mappings
 ### Prerequisites
 - Claude Code installed in VS Code, Cursor, or Antigravity (OR Claude Cowork OR Claude.ai Projects)
 - A paid Claude subscription
-- The deployment prompt for your audience
+- The master deployment prompt (one prompt for all audiences)
 
 ### Setup
 1. Clone this repository into your project folder:
@@ -55,7 +55,7 @@ Each skill includes trigger conditions, process steps, resistance layer mappings
    ```
 2. Open the folder in your IDE
 3. Open Claude Code
-4. Paste your audience-specific deployment prompt
+4. Paste the master deployment prompt
 5. Answer the diagnostic questions honestly — the system builds itself around your answers
 
 ### Deployment Prompt
@@ -137,7 +137,7 @@ Pull only the framework files — this **never touches** your context, pipeline,
 
 ```
 git fetch upstream
-git checkout upstream/main -- .claude/skills/ .claude/rules/diagnostic-methodology.md .claude/rules/change-sequence.md .claude/rules/system-manifest.md .claude/agents/ .claude/settings.json templates/session-summary.md references/industry-crt.md README.md LICENSE FRAMEWORK_VERSION FRAMEWORK_FILES.md .gitignore
+git checkout upstream/main -- .claude/skills/ .claude/rules/diagnostic-methodology.md .claude/rules/change-sequence.md .claude/rules/system-manifest.md .claude/rules/plan-format.md .claude/agents/ .claude/settings.json templates/session-summary.md references/industry-crt.md README.md LICENSE FRAMEWORK_VERSION FRAMEWORK_FILES.md .gitignore
 git add -A
 git commit -m "Updated framework to v[NEW VERSION]"
 ```
@@ -173,6 +173,7 @@ Execution skills are built organically as the S&T Tree identifies what's needed,
 
 ## Version History
 
+- **v2.2** — Added `plan-format.md` rule: every plan produced in plan mode uses the six-part TOC change-sequence structure (UDEs → Root Cause → Problematic Assumption → Injections → Risks & Countermeasures → Plan of Action), so plans mirror the same thinking the diagnostic uses. Wired into the CLAUDE.md template, the framework update command, `FRAMEWORK_FILES.md`, and the system manifest. Reconciled the README front matter to the single master deployment prompt (v2.0+).
 - **v2.1** — First framework sub-agent: **the critic**, a clean-context adversarial reviewer (read-only, Opus) that pressure-tests plans through the user's own constraint. Established the framework-agent update contract: framework agents update with the framework; user-created agents are never overwritten. Updated the framework update commands to pull the whole `.claude/agents/` folder. Added a Framework Agents section to the CLAUDE.md template.
 - **v2.0** — Single master deployment prompt replaces five audience-specific prompts. Two-phase diagnostic: soul builder (Phase A) + business diagnostic (Phase B). Added soul.md personality layer. Added system-manifest.md for token-efficient file routing. Added decision logging rubric with automatic triggers. Updated CLAUDE.md template.
 - **v1.2** — Added industry-level Current Reality Tree as reference document. All deployment prompts updated with real URLs, measurement baseline capture, voice pathway (Wispr Flow), and CRT reference instructions.
