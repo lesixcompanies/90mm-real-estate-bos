@@ -4,6 +4,8 @@
 
 *Update this manifest whenever a file is created or significantly modified.*
 
+*Pruning discipline: this file loads in FULL every session, so its size is a per-session token cost paid forever. Keep it lean — (1) route deep reference detail DOWN to an on-demand file behind a one-line pointer rather than letting a section grow unbounded here, and (2) prune by "still live-referenced?" — when a file is deleted or decommissioned, remove its row; don't just append.*
+
 ---
 
 ## Rules and Behavior
@@ -15,6 +17,7 @@
 | .claude/rules/change-sequence.md | Full change sequence with 9 layers of legitimate resistance — when to use each thinking process, decision logging rubric |
 | .claude/rules/system-manifest.md | This file — index of everything in the system |
 | .claude/rules/plan-format.md | Standing rule — every plan-mode plan uses the six-part TOC change-sequence structure (UDEs → Root Cause/CRT → Problematic Assumption/EC → Injections/FRT → Risks & Countermeasures/NBR → Plan of Action/S&TT). Governs the format of the plan file itself. |
+| .claude/rules/memory-architecture.md | Recording facts with integrity — two disciplines for how facts get written into BOS files: extract-don't-summarize (no lossy paraphrase) and temporal validity (`valid-as-of` tags + supersede-don't-overwrite on volatile facts like prices/dates/statuses). |
 
 ## Thinking Process Skills
 | File | Contains |
@@ -24,6 +27,12 @@
 | .claude/skills/future-reality-tree/SKILL.md | FRT skill — tests proposed direction with real numbers, addresses Layer 4 |
 | .claude/skills/negative-branch-reservation/SKILL.md | NBR skill — tests for unintended consequences, addresses Layer 5 |
 | .claude/skills/strategy-tactics-tree/SKILL.md | S&T Tree skill — builds execution plan with activation inventory, addresses Layers 6-8 |
+
+## Execution Skills
+| File | Contains |
+|------|----------|
+| .claude/skills/dashboard/SKILL.md | Generates a self-contained static `dashboard.html` from your BOS markdown — bottleneck-first (your constraint + health badge + the 3-4 objectives that move it on top, full project S&T trees collapsed below). No server, no credentials, opens offline. Bundles `generate.py` (the generator, with per-file degradation), `bos_lint.py` (project-file schema validator), and a fictional demo BOS. Needs PyYAML. Run `/dashboard`. |
+| .claude/skills/heartbeat/SKILL.md | Deterministic, silent-by-default daily "what needs you" surface. Reads BOS state (overdue/due-soon IOs, aging queue, malformed files, stale decision log) and writes one brief to `inbox/desk-queue.md`; NEVER acts. Runs automatically via the SessionStart hook in `.claude/settings.json` (once/day). Optional cron + Slack documented in its SKILL.md. |
 
 ## Sub-Agents
 | File | Contains |

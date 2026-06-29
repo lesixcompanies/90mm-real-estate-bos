@@ -2,3 +2,8 @@
 CLAUDE.local.md
 .claude/settings.local.json
 node_modules/
+dashboard.html
+demo.html
+.heartbeat-stamp
+__pycache__/
+*.pyc

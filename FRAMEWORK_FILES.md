@@ -12,10 +12,13 @@ These files contain the methodology, thinking processes, rules, and infrastructu
 .claude/skills/future-reality-tree/SKILL.md
 .claude/skills/negative-branch-reservation/SKILL.md
 .claude/skills/strategy-tactics-tree/SKILL.md
+.claude/skills/dashboard/
+.claude/skills/heartbeat/
 .claude/rules/diagnostic-methodology.md
 .claude/rules/change-sequence.md
 .claude/rules/system-manifest.md
 .claude/rules/plan-format.md
+.claude/rules/memory-architecture.md
 .claude/agents/README.md
 .claude/agents/critic.md
 .claude/settings.json
