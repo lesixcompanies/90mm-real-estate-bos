@@ -41,6 +41,16 @@ Each skill includes trigger conditions, process steps, resistance layer mappings
 | Negative Branch Reservation | What to change to? | 5 |
 | Strategy & Tactics Tree | How to make change happen? | 6, 7, 8 |
 
+## Your Dashboard & Daily Heartbeat
+
+Two execution skills ship with the framework so the system shows you where you stand and tells you what needs you.
+
+**`/dashboard`** generates a self-contained `dashboard.html` from your BOS markdown — no server, no accounts, opens offline by double-click. It leads with your **bottleneck** (your system constraint + a health badge) and the **3-4 big-ticket objectives** that move it right now, with your full project S&T trees collapsed below. Re-run it any time for a fresh snapshot. A fictional demo BOS is bundled so you can see a populated dashboard before filling in your own, and `bos_lint.py` validates your project files so a typo never silently breaks the view.
+
+**The heartbeat** is the push side: a deterministic, silent-by-default check that, once a day, writes a brief to `inbox/desk-queue.md` when something needs you — an overdue objective, due-soon critical work, an aging queue item, a malformed file, a stale decision log. It **never acts**; it only reads your files and surfaces. It ships wired into a SessionStart hook, so it runs automatically the first time you open Claude Code each day — no setup.
+
+Both need Python 3 + PyYAML (`pip install pyyaml`); the dashboard's output HTML has no dependencies at all.
+
 ## How to Use It
 
 ### Prerequisites
@@ -137,7 +147,7 @@ Pull only the framework files — this **never touches** your context, pipeline,
 
 ```
 git fetch upstream
-git checkout upstream/main -- .claude/skills/ .claude/rules/diagnostic-methodology.md .claude/rules/change-sequence.md .claude/rules/system-manifest.md .claude/rules/plan-format.md .claude/agents/ .claude/settings.json templates/session-summary.md references/industry-crt.md README.md LICENSE FRAMEWORK_VERSION FRAMEWORK_FILES.md .gitignore
+git checkout upstream/main -- .claude/skills/ .claude/rules/diagnostic-methodology.md .claude/rules/change-sequence.md .claude/rules/system-manifest.md .claude/rules/plan-format.md .claude/rules/memory-architecture.md .claude/agents/ .claude/settings.json templates/session-summary.md references/industry-crt.md README.md LICENSE FRAMEWORK_VERSION FRAMEWORK_FILES.md .gitignore
 git add -A
 git commit -m "Updated framework to v[NEW VERSION]"
 ```
@@ -173,6 +183,7 @@ Execution skills are built organically as the S&T Tree identifies what's needed,
 
 ## Version History
 
+- **v3.0** — **The dashboard, the heartbeat, and memory integrity.** Added a `/dashboard` skill that generates a self-contained, bottleneck-first `dashboard.html` from your BOS markdown (no server, no credentials), bundling a `bos_lint.py` project-file validator and a fictional demo BOS. Added a deterministic, silent-by-default **heartbeat** that surfaces what needs you each day to `inbox/desk-queue.md`, wired to run automatically via a SessionStart hook. Added `memory-architecture.md` (extract-don't-summarize + temporal-validity disciplines). Wired into the CLAUDE.md template, the framework update command, `FRAMEWORK_FILES.md`, and the system manifest.
 - **v2.2** — Added `plan-format.md` rule: every plan produced in plan mode uses the six-part TOC change-sequence structure (UDEs → Root Cause → Problematic Assumption → Injections → Risks & Countermeasures → Plan of Action), so plans mirror the same thinking the diagnostic uses. Wired into the CLAUDE.md template, the framework update command, `FRAMEWORK_FILES.md`, and the system manifest. Reconciled the README front matter to the single master deployment prompt (v2.0+).
 - **v2.1** — First framework sub-agent: **the critic**, a clean-context adversarial reviewer (read-only, Opus) that pressure-tests plans through the user's own constraint. Established the framework-agent update contract: framework agents update with the framework; user-created agents are never overwritten. Updated the framework update commands to pull the whole `.claude/agents/` folder. Added a Framework Agents section to the CLAUDE.md template.
 - **v2.0** — Single master deployment prompt replaces five audience-specific prompts. Two-phase diagnostic: soul builder (Phase A) + business diagnostic (Phase B). Added soul.md personality layer. Added system-manifest.md for token-efficient file routing. Added decision logging rubric with automatic triggers. Updated CLAUDE.md template.

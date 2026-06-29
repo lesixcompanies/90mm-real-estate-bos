@@ -51,6 +51,7 @@ Re-run when the constraint shifts or quarterly, whichever comes first.
 @.claude/rules/system-manifest.md
 @.claude/rules/soul.md
 @.claude/rules/plan-format.md
+@.claude/rules/memory-architecture.md
 This system follows the TOC change sequence. Always know where you are in the sequence. Never skip steps. Never advance past a resistance layer gate without resolution. Read the system manifest first to identify relevant files — do not load everything into context.
 
 ## Thinking Process Skills
@@ -61,7 +62,9 @@ This system follows the TOC change sequence. Always know where you are in the se
 - .claude/skills/strategy-tactics-tree/SKILL.md — "How to make change happen" (Layers 6-8)
 
 ## Additional Skills
-Execution skills live in .claude/skills/ and are built during the Execute phase as needed, driven by the S&T Tree.
+Execution skills live in .claude/skills/ and are built during the Execute phase as needed, driven by the S&T Tree. Two ship with the framework:
+- .claude/skills/dashboard/SKILL.md — generate a self-contained `dashboard.html` of your BOS (your bottleneck + the 3-4 objectives that move it + full project S&T trees), from your markdown, no infrastructure. Run `/dashboard`. Bundles `bos_lint.py` (validate project files) and a fictional demo BOS.
+- .claude/skills/heartbeat/SKILL.md — a deterministic, silent-by-default daily "what needs you" surface → `inbox/desk-queue.md`. Runs automatically via a SessionStart hook; never acts.
 
 ## Framework Agents
 - .claude/agents/critic.md — Clean-context adversarial reviewer (read-only, Opus). Invoke by name or by asking to "roast / pressure-test / poke holes in" a plan, offer, project, or decision. Reads this user's constraint and soul.md, then attacks the plan through the TOC lens. Fires on explicit critique intent only — never proactively. Use it before committing to a direction, not as a substitute for the change sequence.
