@@ -15,6 +15,7 @@ These files contain the methodology, thinking processes, rules, and infrastructu
 .claude/rules/diagnostic-methodology.md
 .claude/rules/change-sequence.md
 .claude/rules/system-manifest.md
+.claude/rules/plan-format.md
 .claude/agents/README.md
 .claude/agents/critic.md
 .claude/settings.json

@@ -14,6 +14,7 @@
 | .claude/rules/diagnostic-methodology.md | How constraint-based diagnostics work — four dimensions, core principles |
 | .claude/rules/change-sequence.md | Full change sequence with 9 layers of legitimate resistance — when to use each thinking process, decision logging rubric |
 | .claude/rules/system-manifest.md | This file — index of everything in the system |
+| .claude/rules/plan-format.md | Standing rule — every plan-mode plan uses the six-part TOC change-sequence structure (UDEs → Root Cause/CRT → Problematic Assumption/EC → Injections/FRT → Risks & Countermeasures/NBR → Plan of Action/S&TT). Governs the format of the plan file itself. |
 
 ## Thinking Process Skills
 | File | Contains |
